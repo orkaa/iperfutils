@@ -1,9 +1,3 @@
-import optparse
-import subprocess
-import sys
-from collections import defaultdict
-import json
-
 """
 The first (optional) argument is the number of trials to run; the default is 5. The rest of
 the arguments just get passed right through to Popen. Sample usage:
@@ -11,6 +5,12 @@ the arguments just get passed right through to Popen. Sample usage:
 iperf_trials iperf (run 5 trials of iperf using all defaults)
 iperf_trials 10 iperf -t 60 -u -b 100M (run 10 trials of iperf using UDP, aiming to achieve 100Mbps bandwidth)
 """
+
+import optparse
+import subprocess
+import sys
+from collections import defaultdict
+import json
 
 def process_stats(results, metric_positions):
     stats = defaultdict(lambda: {'max': 0.0, 'min': float("inf"), 'mean': 0.0 })
@@ -42,8 +42,6 @@ def process_udp_stats(results):
     return process_stats(results, metric_positions)
 
 argv = sys.argv[1:]
-
-print __doc__
 
 if '-h' in argv:
     print __doc__
